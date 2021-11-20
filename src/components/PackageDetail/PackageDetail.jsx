@@ -82,7 +82,11 @@ const PackageDetail = () => {
                 {...register('message')}
               />
 
-              <input className='btn btn-warning' type='submit' />
+              <input
+                className='btn btn-warning'
+                value='Book Your Awesome Tour'
+                type='submit'
+              />
             </Form>
           </div>
         </div>

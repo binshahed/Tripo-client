@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
-import useAuth from '../context/useAuth'
 
-const MyOrders = () => {
+const AllOrders = () => {
   const [orders, setOrders] = useState([])
-  const { user } = useAuth()
   useEffect(() => {
     fetch('http://localhost:5000/booking')
       .then(res => res.json())
-      .then(data =>
-        setOrders(data?.filter(order => order.email === user.email))
-      )
+      .then(data => setOrders(data))
   }, [])
 
   const handleDelete = id => {
     const proceed = window.confirm('Are you sure you want to delete')
-    const url = `http://localhost:5000/booking/${id}`
     if (proceed) {
+      const url = `http://localhost:5000/booking/${id}`
       fetch(url, {
         method: 'DELETE'
       })
@@ -31,16 +27,12 @@ const MyOrders = () => {
     }
   }
 
-  //   const myOrders = orders?.filter(order => order.email === user.email)
-  console.log(orders)
   return (
-    <div className='container my-5'>
+    <div className='container'>
       {orders.length > 0 ? (
-        <h1 className='text-center my-5'>Your packages</h1>
+        <h1 className='text-center my-5'>All Orders</h1>
       ) : (
-        <h1 className='text-center my-5'>
-          Please Order a Package <br /> you have no any packages
-        </h1>
+        <h1 className='text-center my-5'>Please Order a Package</h1>
       )}
       <div className='row'>
         {orders.map(order => (
@@ -52,7 +44,7 @@ const MyOrders = () => {
             <p>Order Date: {order.date}</p>
             <p>Status: {order.status}</p>
             <Button
-              className='my-2'
+              className='my-3'
               onClick={() => handleDelete(order._id)}
               variant='warning'
             >
@@ -65,4 +57,4 @@ const MyOrders = () => {
   )
 }
 
-export default MyOrders
+export default AllOrders
