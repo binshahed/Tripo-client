@@ -3,10 +3,10 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import logo from '../../image/logo-light.png'
 import useAuth from '../context/useAuth'
+import './TopNam.css'
 
 const TopNav = () => {
   const { user, handleSignOut } = useAuth()
-  console.log(user)
   return (
     <Navbar bg='dark' variant='dark' expand='lg' sticky='top'>
       <Container>
@@ -22,8 +22,9 @@ const TopNav = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href='#action1'>Home</Nav.Link>
-            <Nav.Link href='#action2'>Link</Nav.Link>
+            <Link to='/'>Home</Link>
+            <Link to='/packages'>Packages</Link>
+            {user.email && <Link to='/myOrders'>My Orders</Link>}
 
             <Nav.Link href='#' disabled>
               Link
@@ -37,7 +38,9 @@ const TopNav = () => {
                 alt=''
               />
             )}
-            <span className='text-warning px-2'>{user?.displayName}</span>
+            {user.email && (
+              <span className='text-warning px-2'>{user?.displayName}</span>
+            )}
             {user.email ? (
               <Button variant='warning' onClick={handleSignOut}>
                 logout

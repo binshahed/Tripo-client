@@ -1,0 +1,15 @@
+.card {
+    text-align: center;
+    border: none;
+  }
+  
+  .img-section {
+    overflow: hidden;
+  }
+  .card-image {
+    transition: 0.9s;
+  }
+  
+  .card-image:hover {
+    transform: scale(1.5);
+  }
