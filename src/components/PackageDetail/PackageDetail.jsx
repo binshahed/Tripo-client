@@ -19,7 +19,7 @@ const PackageDetail = () => {
   const { register, handleSubmit, reset } = useForm()
   const onSubmit = data => {
     data.package = packageFound
-    data.status = 'pending'
+    data.status = 'Pending'
 
     axios.post('http://localhost:5000/booking', data).then(res => {
       if (res.data.insertedId) {
