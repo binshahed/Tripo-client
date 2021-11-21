@@ -1,5 +1,6 @@
-#Live App [Tripo](https://tripo-4c919.web.app)
-##App Features
+# Live App [Tripo](https://tripo-4c919.web.app)
+
+## App Features
 * Fully Responsive Design. 
 * Tripo is a Tour agency app.
 * You can add booking remove booking & Add new Packages.
