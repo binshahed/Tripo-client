@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 import useAuth from '../context/useAuth'
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
   const { user } = useAuth()
   useEffect(() => {
+    setIsLoading(true)
     fetch('https://infinite-everglades-05408.herokuapp.com/booking')
       .then(res => res.json())
-      .then(data =>
+      .then(data => {
         setOrders(data?.filter(order => order.email === user.email))
-      )
+        setIsLoading(false)
+      })
   }, [])
 
   const handleDelete = id => {
@@ -29,6 +33,14 @@ const MyOrders = () => {
           }
         })
     }
+  }
+
+  if (isLoading) {
+    return (
+      <div className='App my-5'>
+        <Spinner animation='border' variant='warning' />
+      </div>
+    )
   }
 
   //   const myOrders = orders?.filter(order => order.email === user.email)

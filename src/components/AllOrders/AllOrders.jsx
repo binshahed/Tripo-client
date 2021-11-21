@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 
 const AllOrders = () => {
   const [orders, setOrders] = useState([])
   const [approved, seApproved] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
+    setIsLoading(true)
     fetch('https://infinite-everglades-05408.herokuapp.com/booking')
       .then(res => res.json())
-      .then(data => setOrders(data))
+      .then(data => {
+        setOrders(data)
+        setIsLoading(false)
+      })
   }, [approved])
 
   const handleDelete = id => {
@@ -48,13 +54,18 @@ const AllOrders = () => {
       })
   }
 
+  if (isLoading) {
+    return (
+      <div className='App my-5'>
+        <Spinner animation='border' variant='warning' />
+      </div>
+    )
+  }
+
   return (
     <div className='container'>
-      {orders.length > 0 ? (
-        <h1 className='text-center my-5'>All Orders</h1>
-      ) : (
-        <h1 className='text-center my-5'>Please Order a Package</h1>
-      )}
+      <h1 className='text-center my-5'>All Orders</h1>
+
       <div className='row'>
         {orders.map(order => (
           <div className='col-md-3' key={order._id}>
