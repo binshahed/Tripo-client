@@ -5,7 +5,7 @@ const AllOrders = () => {
   const [orders, setOrders] = useState([])
   const [approved, seApproved] = useState({})
   useEffect(() => {
-    fetch('http://localhost:5000/booking')
+    fetch('https://infinite-everglades-05408.herokuapp.com/booking')
       .then(res => res.json())
       .then(data => setOrders(data))
   }, [approved])
@@ -13,7 +13,7 @@ const AllOrders = () => {
   const handleDelete = id => {
     const proceed = window.confirm('Are you sure you want to delete')
     if (proceed) {
-      const url = `http://localhost:5000/booking/${id}`
+      const url = `https://infinite-everglades-05408.herokuapp.com/booking/${id}`
       fetch(url, {
         method: 'DELETE'
       })
@@ -33,7 +33,7 @@ const AllOrders = () => {
     approvedData.status = 'Approved'
     console.log(approvedData)
 
-    const url = `http://localhost:5000/booking/${id}`
+    const url = `https://infinite-everglades-05408.herokuapp.com/booking/${id}`
     fetch(url, {
       method: 'PUT',
       headers: {

@@ -6,7 +6,7 @@ const MyOrders = () => {
   const [orders, setOrders] = useState([])
   const { user } = useAuth()
   useEffect(() => {
-    fetch('http://localhost:5000/booking')
+    fetch('https://infinite-everglades-05408.herokuapp.com/booking')
       .then(res => res.json())
       .then(data =>
         setOrders(data?.filter(order => order.email === user.email))
@@ -15,7 +15,7 @@ const MyOrders = () => {
 
   const handleDelete = id => {
     const proceed = window.confirm('Are you sure you want to delete')
-    const url = `http://localhost:5000/booking/${id}`
+    const url = `https://infinite-everglades-05408.herokuapp.com/booking/${id}`
     if (proceed) {
       fetch(url, {
         method: 'DELETE'

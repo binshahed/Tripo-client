@@ -21,12 +21,14 @@ const PackageDetail = () => {
     data.package = packageFound
     data.status = 'Pending'
 
-    axios.post('http://localhost:5000/booking', data).then(res => {
-      if (res.data.insertedId) {
-        alert('added successfully')
-        reset()
-      }
-    })
+    axios
+      .post('https://infinite-everglades-05408.herokuapp.com/booking', data)
+      .then(res => {
+        if (res.data.insertedId) {
+          alert('added successfully')
+          reset()
+        }
+      })
     console.log(data)
   }
   return (

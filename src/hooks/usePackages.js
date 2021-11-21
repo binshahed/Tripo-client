@@ -8,7 +8,7 @@ const usePackages = () => {
 
   useEffect(() => {
     setWaiting(true)
-    fetch('http://localhost:5000/packages')
+    fetch('https://infinite-everglades-05408.herokuapp.com/packages')
       .then(res => res.json())
       .then(data => {
         setPackages(data)
