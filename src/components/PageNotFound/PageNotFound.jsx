@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react'
+import notFoundImage from '../../image/notFound.png'
 
 const PageNotFound = () => {
   return (
-    <div>
-      <h1>PageNot found</h1>
+    <div className='App'>
+      <img style={{ width: '50%' }} src={notFoundImage} alt='' />
     </div>
-  );
-};
+  )
+}
 
-export default PageNotFound;
+export default PageNotFound

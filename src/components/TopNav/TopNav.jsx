@@ -24,9 +24,12 @@ const TopNav = () => {
           >
             <Link to='/'>Home</Link>
             <Link to='/packages'>Packages</Link>
+
             {user.email && <Link to='/myOrders'>My Orders</Link>}
             {user.email && <Link to='/allOrders'>Manage all Orders</Link>}
             {user.email && <Link to='/addPackage'>Add Package</Link>}
+            <Link to='/about'>About Us</Link>
+            <Link to='/guides'>Guides</Link>
           </Nav>
           <div>
             {user?.email && (

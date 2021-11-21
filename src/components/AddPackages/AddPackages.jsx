@@ -7,7 +7,7 @@ const AddPackages = () => {
   //react hook format
   const { register, handleSubmit, reset } = useForm()
   const onSubmit = data => {
-    axios.post('http://localhost:5000/booking', data).then(res => {
+    axios.post('http://localhost:5000/packages', data).then(res => {
       if (res.data.insertedId) {
         alert('added successfully')
         reset()
@@ -17,6 +17,7 @@ const AddPackages = () => {
   }
   return (
     <div className='my-5 container package-detail'>
+      <h1 className='text-center my-4'>Create A New Package</h1>
       <Form className='booking-form' onSubmit={handleSubmit(onSubmit)}>
         <input
           placeholder='Package Name'

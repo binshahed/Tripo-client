@@ -32,7 +32,6 @@ const MyOrders = () => {
   }
 
   //   const myOrders = orders?.filter(order => order.email === user.email)
-  console.log(orders)
   return (
     <div className='container my-5'>
       {orders.length > 0 ? (

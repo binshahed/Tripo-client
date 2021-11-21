@@ -4,9 +4,15 @@ import usePackages from '../../hooks/usePackages'
 import Package from '../Package/Package'
 
 const OurPackages = () => {
-  const [packages] = usePackages()
-  console.log(packages)
+  const [packages, waiting] = usePackages()
 
+  if (waiting) {
+    return (
+      <div className='App my-5'>
+        <Spinner animation='border' variant='warning' />
+      </div>
+    )
+  }
   return (
     <div className='App container'>
       <h1 className='my-5'>Our Packages</h1>

@@ -30,7 +30,7 @@ const Package = props => {
           </p>
           <Card.Text>{package_detail}</Card.Text>
           <Link to={`/package/${_id}`}>
-            <Button variant='warning'>See More Detail</Button>
+            <Button variant='warning'>Book Package</Button>
           </Link>
         </Card.Body>
       </Card>

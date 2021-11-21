@@ -3,11 +3,12 @@ import { Button } from 'react-bootstrap'
 
 const AllOrders = () => {
   const [orders, setOrders] = useState([])
+  const [approved, seApproved] = useState({})
   useEffect(() => {
     fetch('http://localhost:5000/booking')
       .then(res => res.json())
       .then(data => setOrders(data))
-  }, [])
+  }, [approved])
 
   const handleDelete = id => {
     const proceed = window.confirm('Are you sure you want to delete')
@@ -27,6 +28,26 @@ const AllOrders = () => {
     }
   }
 
+  const handleUpdateStatus = id => {
+    const approvedData = orders?.find(order => order._id === id)
+    approvedData.status = 'Approved'
+    console.log(approvedData)
+
+    const url = `http://localhost:5000/booking/${id}`
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(approvedData)
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert('order is Approved')
+        seApproved(data)
+      })
+  }
+
   return (
     <div className='container'>
       {orders.length > 0 ? (
@@ -43,12 +64,32 @@ const AllOrders = () => {
             <p>Email: {order.email}</p>
             <p>Order Date: {order.date}</p>
             <p>Status: {order.status}</p>
+
+            {(order.status === 'Approved' && (
+              <Button
+                disabled
+                variant='success'
+                className='mx-1'
+                onClick={() => handleUpdateStatus(order._id)}
+              >
+                Approve order
+              </Button>
+            )) || (
+              <Button
+                variant='success'
+                className='mx-1'
+                onClick={() => handleUpdateStatus(order._id)}
+              >
+                Approve order
+              </Button>
+            )}
+
             <Button
               className='my-3'
               onClick={() => handleDelete(order._id)}
-              variant='warning'
+              variant='danger'
             >
-              Cancel Order
+              Reject Order
             </Button>
           </div>
         ))}

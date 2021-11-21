@@ -1,6 +1,5 @@
-import logo from './logo.svg'
 import './App.css'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './components/Home/Home'
 import TopNav from './components/TopNav/TopNav'
 import Footer from './components/Footer/Footer'
@@ -11,9 +10,11 @@ import PageNotFound from './components/PageNotFound/PageNotFound'
 import OurPackages from './components/OurPackages/OurPackages'
 import PackageDetail from './components/PackageDetail/PackageDetail'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
-import MyOrders from './components/MyOrderx/MyOrders'
+import MyOrders from './components/MyOrders/MyOrders'
 import AllOrders from './components/AllOrders/AllOrders'
 import AddPackages from './components/AddPackages/AddPackages'
+import ChoseUs from './components/ChoseUs/ChoseUs'
+import TourGuides from './components/TourGuides/TourGuides'
 
 initializeAuthentication()
 
@@ -28,6 +29,12 @@ function App () {
           </Route>
           <Route exact path='/packages'>
             <OurPackages />
+          </Route>
+          <Route exact path='/about'>
+            <ChoseUs />
+          </Route>
+          <Route exact path='/guides'>
+            <TourGuides />
           </Route>
           <PrivateRoute exact path='/package/:id'>
             <PackageDetail />
